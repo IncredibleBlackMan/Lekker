@@ -21,7 +21,7 @@ RSpec.describe 'Users', type: :request do
     it 'returns http success on archiving' do
       auth_token = authenticate_user(users.first)
 
-      archive_url = `/#{users.last.id}/archive`
+      archive_url = "/users/#{users.last.id}/archive"
       put archive_url, headers: { 'Authentication' => "Bearer #{auth_token}" }
       expect(response).to have_http_status(:success)
     end
@@ -31,7 +31,7 @@ RSpec.describe 'Users', type: :request do
     it 'returns http success on unarchiving' do
       auth_token = authenticate_user(users.first)
 
-      unarchive_url = `/#{users.last.id}/unarchive`
+      unarchive_url = "/users/#{users.last.id}/unarchive"
       put unarchive_url, headers: { 'Authentication' => "Bearer #{auth_token}" }
       expect(response).to have_http_status(:success)
     end
