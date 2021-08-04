@@ -3,9 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-gem 'rails', '~> 6.1.1'
 gem 'mysql2', '~> 0.5'
 gem 'puma', '~> 5.0'
+gem 'rails', '~> 6.1.1'
 
 # Use Active Model has_secure_password
 gem 'bcrypt'
@@ -22,10 +22,14 @@ gem 'jwt'
 # seriaization & json_api logic
 gem 'jsonapi.rb'
 
+gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'rspec-rails', '~> 4.0.2'
 end
 

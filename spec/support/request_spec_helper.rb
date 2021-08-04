@@ -6,8 +6,8 @@ module RequestSpecHelper
   def authenticate_user(user)
     auth_params = { authentication: {
       email: user.email,
-      password: 'supersecurepassword'
-    }}
+      password: user.password
+    } }
     post '/authentications', params: auth_params.to_json, headers: { "Content-Type": "application/json" }
     return json['token']
   end
