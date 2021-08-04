@@ -9,6 +9,7 @@ class AuthenticationsController < ApplicationController
       render json: {
         user_id: user.id,
         user_email: user.email,
+        status: user.status,
         token: token
       }, status: :created
     else
