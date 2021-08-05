@@ -28,6 +28,9 @@ gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dab
 
 gem "pundit"
 
+gem 'rswag-api'
+gem 'rswag-ui'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -36,6 +39,7 @@ group :development, :test do
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'pry'
   gem 'rspec-rails', '~> 4.0.2'
+  gem 'rswag-specs'
 end
 
 group :development do
