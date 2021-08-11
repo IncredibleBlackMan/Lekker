@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_084842) do
+ActiveRecord::Schema.define(version: 2021_08_04_224716) do
+
+  create_table "status_managements", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "performer_id"
+    t.integer "receiver_id"
+    t.string "action"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["performer_id"], name: "index_status_managements_on_performer_id"
+    t.index ["receiver_id"], name: "index_status_managements_on_receiver_id"
+  end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status", default: "active"
   end
 
 end

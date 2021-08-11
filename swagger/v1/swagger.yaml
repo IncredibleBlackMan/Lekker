@@ -1,0 +1,88 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/authentications":
+    post:
+      summary: Creates a user
+      parameters: []
+      responses:
+        '200':
+          description: authenticates a user
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+  "/signup":
+    post:
+      summary: Creates a user
+      parameters: []
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+              required:
+              - email
+              - password
+              - password_confirmation
+  "/status_managements":
+    get:
+      summary: lists statuses
+      responses:
+        '200':
+          description: status amanagements retrieved
+  "/users":
+    get:
+      summary: Filters users
+      responses:
+        '200':
+          description: users retrieved
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+  "/users/{id}/archive":
+    put:
+      summary: Archives a user
+      responses:
+        '200':
+          description: user archived
+  "/users/{id}/unarchive":
+    put:
+      summary: Unarchives a user
+      responses:
+        '200':
+          description: user unarchived
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

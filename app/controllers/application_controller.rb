@@ -1,4 +1,10 @@
 class ApplicationController < ActionController::API
+  include Pundit
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found!
+
   before_action :authorize!
 
   private
@@ -16,6 +22,14 @@ class ApplicationController < ActionController::API
     return true if logged_in?
 
     render json: { message: 'Please log in' }, status: :unauthorized
+  end
+
+  def user_not_authorized
+    render json: { message: 'You are not authorized to perform this action.' }, status: :unauthorized
+  end
+
+  def render_not_found!
+    render json: { message: 'Resource not found' }, status: :not_found
   end
 
   def render_jsonapi_internal_server_error(exception)
